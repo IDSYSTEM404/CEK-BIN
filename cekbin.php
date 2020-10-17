@@ -24,24 +24,24 @@ $six = trim(fgets(STDIN, 1024));
   }
   // JSON DATA
     $bin = defineNUM($six);
-    $curl = curl("https://idsystem404.000webhostapp.com/api/api-cekinfobin.php?bin=".$bin);
+    $curl = curl("https://lookup.binlist.net/".$bin);
     $json = json_decode($curl);
-    $cardBrand = $json->brand ? $json->brand : "TIDAK ADA";
-    $cardType = $json->type ? $json->type : "TIDAK ADA";
-    $cardPrepaid = $json->prepaid ? $json->prepaid : "TIDAK ADA";
-    $countryCode = $json->country->alpha2 ? $json->country->alpha2 : "TIDAK ADA";
-    $countryName = $json->country->name ? $json->country->name : "TIDAK ADA";
-    $countryLat = $json->country->latitude ? $json->country->latitude : "TIDAK ADA";
-    $countryLong = $json->country->longitude ? $json->country->longitude : "TIDAK ADA";
-    $cardName = $json->bank->name ? $json->bank->name : "TIDAK ADA";
-    $url = $json->bank->url ? $json->bank->url : "TIDAK ADA";
-    $phone = $json->bank->phone ? $json->bank->phone : "TIDAK ADA";
-    $cardCity = $json->bank->city ? $json->bank->city : "TIDAK ADA";
+    $cardBrand = $json->brand ? $json->brand : "not found";
+    $cardType = $json->type ? $json->type : "not found";
+    $cardScheme = $json->scheme ? ucwords($json->scheme) : "not found";
+    $countryCode = $json->country->alpha2 ? $json->country->alpha2 : "not found";
+    $countryName = $json->country->name ? $json->country->name : "not found";
+    $countryLat = $json->country->latitude ? $json->country->latitude : "not found";
+    $countryLong = $json->country->longitude ? $json->country->longitude : "not found";
+    $cardName = $json->bank->name ? $json->bank->name : "not found";
+    $url = $json->bank->url ? $json->bank->url : "not found";
+    $phone = $json->bank->phone ? $json->bank->phone : "not found";
+    $cardCity = $json->bank->city ? $json->bank->city : "not found";
 
 echo "\nNama Bank : $cardName";
 echo "\nJenis Brand : $cardBrand";
 echo "\nTipe Kartu : $cardType";
-echo "\nJenis Prepaid : $cardPrepaid";
+echo "\nScheme Kartu : $cardPrepaid";
 echo "\nNama Negara : $countryName";
 echo "\nKode Negara : $countryCode";
 echo "\nNama Kota : $cardCity";
